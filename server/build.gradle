@@ -1,0 +1,44 @@
+plugins {
+   id 'org.springframework.boot' version '1.4.3.RELEASE'
+}
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'dots-and-boxes-server'
+    version =  '1.0.0-SNAPSHOT'
+}
+
+repositories {
+    jcenter()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.16.12'
+
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+
+    compile 'org.slf4j:slf4j-api:1.7.21'
+    compile 'com.google.code.findbugs:jsr305:3.0.1'
+    compile 'com.google.guava:guava:20.0'
+    // Jackson modules to support thinks I'm using such as Optional and new time API classes.
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.8.5'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.5'
+
+    testCompile 'junit:junit:4.12'
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('com.jayway.jsonpath:json-path')
+}
+
+test {
+    testLogging.showStandardStreams = true
+}
+
+mainClassName = "com.mgl.dotsandboxes.server.DotsAndBoxesApplication"

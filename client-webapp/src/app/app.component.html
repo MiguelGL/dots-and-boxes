@@ -1,0 +1,19 @@
+<nav class="navbar navbar-light bg-faded">
+  <a class="navbar-brand" href="#">
+    <img src="../assets/dots-and-boxes.png" width="30" height="30"
+         class="d-inline-block align-top" alt="Dots and Boxes Logo">
+    Dots and Boxes
+  </a>
+  <div *ngIf="apiClient.isRegistered">
+    <span class="navbar-text">Playing as {{apiClient.playerDescription}}</span>
+  </div>
+  <div *ngIf="!apiClient.isRegistered">
+    <span class="navbar-text">Not Registered</span>
+  </div>
+</nav>
+
+<p-growl [value]="messages | async"></p-growl>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

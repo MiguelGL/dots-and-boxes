@@ -1,0 +1,14 @@
+table {
+  border: 1px solid gray;
+  table-layout: fixed;
+  width: 50em;
+}
+
+th, td {
+  border: 1px solid gray;
+}
+
+td {
+  height: 5em;
+  text-align: center;
+}

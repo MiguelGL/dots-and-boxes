@@ -1,0 +1,28 @@
+<h2>Playing game {{gameId}}</h2>
+<h3 *ngIf="state">Gate state: {{state}}</h3>
+<h3 *ngIf="winner">Winner: {{winner}}</h3>
+<h3 *ngIf="winner == 'HUMAN'">Your Score: {{score}}</h3>
+
+<button *ngIf="winner == 'HUMAN'" type="button" class="btn btn-lg btn-primary"
+        (click)="playAgain()">
+  Play Again
+</button>
+
+<table>
+  <tr *ngFor="let rowCells of cells; let row = index; let firstRow = first; let lastRow = last">
+    <td *ngFor="let cell of rowCells; let col = index; let firstCol = first; let lastCol = last">
+      <div *ngIf="cell.isLine">
+        <input type="checkbox" [value]="cell.clicked" [checked]="cell.clicked"
+               (click)="lineClicked(row, col)"
+               [disabled]="cell.clicked" [class.disabled]="cell.clicked">
+      </div>
+      <div *ngIf="cell.isDot">
+        o
+      </div>
+      <div *ngIf="cell.isBox">
+
+      </div>
+    </td>
+  </tr>
+</table>
+

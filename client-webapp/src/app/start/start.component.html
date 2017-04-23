@@ -1,0 +1,54 @@
+<!--
+<ul>
+  <li><a routerLink="/register">Register</a></li>
+  <li><a routerLink="/start">Start</a></li>
+  <li>
+    <a routerLink="/games">Games</a>
+    <ul>
+      <li><a routerLink="/games/one">One</a></li>
+      <li><a routerLink="/games/two">One</a></li>
+    </ul>
+  </li>
+  <li><a routerLink="/top-ten">Top Ten</a></li>
+</ul>
+-->
+<form [formGroup]="newGameForm"
+      (ngSubmit)="startNewGame(newGameForm.value, newGameForm.valid, newGameForm)">
+
+  <h2 class="form-signin-heading">Start a new game</h2>
+
+  <div class="form-group" [class.has-danger]="newGameForm.controls.dimension.dirty && !newGameForm.controls.dimension.valid">
+    <label for="dimensionInput">Dimension</label>
+    <input type="number" class="form-control" id="dimensionInput" placeholder="Board size"
+           formControlName="dimension">
+    <div *ngIf="newGameForm.controls.dimension.dirty && !newGameForm.controls.dimension.valid">
+      <div *ngIf="newGameForm.controls.dimension.errors?.required"
+           class="form-control-feedback">
+        Dimension is required
+      </div>
+      <div *ngIf="newGameForm.controls.dimension.errors?.range"
+           class="form-control-feedback">
+        Value out of range [2, 5]
+      </div>
+      <div *ngIf="newGameForm.controls.dimension.errors?.number"
+           class="form-control-feedback">
+        Must be a number
+      </div>
+    </div>
+
+  </div>
+
+  <div class="form-check">
+    <label class="form-check-label">
+      <input class="form-check-input" type="checkbox"
+             formControlName="computerStarts">
+      Let computer start playing
+    </label>
+  </div>
+
+  <button type="submit" class="btn btn-primary"
+            [disabled]="!newGameForm.valid">New Game</button>
+
+  <h2><a routerLink="/top-ten">Your Top Ten</a></h2>
+
+</form>
